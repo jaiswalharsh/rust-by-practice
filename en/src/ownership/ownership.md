@@ -65,8 +65,8 @@ fn print_str(s: String)  {
 ```rust,editable
 // Don't use clone ,use copy instead
 fn main() {
-    let x = (1, 2, (), "hello".to_string());
-    let y = x.clone();
+    let x:(i32, i32, (), &str) = (1, 2, (), "hello");
+    let y:(i32, i32, (), &str) = x;
     println!("{:?}, {:?}", x, y);
 }
 ```
@@ -81,7 +81,7 @@ Mutability can be changed when ownership is transferred.
 fn main() {
     let s = String::from("Hello ");
     
-    let s1 = s;
+    let mut s1 = s;
 
     s1.push_str("World!");
 
@@ -93,9 +93,9 @@ fn main() {
 ```rust,editable
 
 fn main() {
-    let x = Box::new(5);
+    let x: Box<i32> = Box::new(5);
     
-    let ...      // update this line, don't change other lines!
+    let mut y: Box<i32> = Box::new(1);      // update this line, don't change other lines!
     
     *y = 4;
     
@@ -144,12 +144,12 @@ fn main() {
 ```rust,editable
 
 fn main() {
-   let t = (String::from("hello"), String::from("world"));
+   let t: (String, String) = (String::from("hello"), String::from("world"));
 
    let _s = t.0;
 
    // Modify this line only, don't use `_s`
-   println!("{:?}", t);
+   println!("{:?}", t.1);
 }
 ```
 
@@ -157,10 +157,10 @@ fn main() {
 ```rust,editable
 
 fn main() {
-   let t = (String::from("hello"), String::from("world"));
-
+    let t: (String, String) = (String::from("hello"), String::from("world"));
+    
     // Fill the blanks
-    let (__, __) = __;
+    let (s1, s2) = t.clone();
 
     println!("{:?}, {:?}, {:?}", s1, s2, t); // -> "hello", "world", ("hello", "world")
 }
