@@ -9,7 +9,7 @@ The type of string literal `"hello, world"` is `&str`, e.g `let s: &str = "hello
 
 // Fix error without adding new line
 fn main() {
-    let s: str = "hello, world";
+    let s: &str = "hello, world";
 
     println!("Success!");
 }
@@ -22,7 +22,7 @@ fn main() {
 
 // Fix the error with at least two solutions
 fn main() {
-    let s: Box<str> = "hello, world".into();
+    let s: &str = "hello, world";
     greetings(s)
 }
 
